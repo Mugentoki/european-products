@@ -1,0 +1,16 @@
+[
+    {
+      "name": "Netflix",
+      "company": "Netflix Inc.",
+      "origin": "US",
+      "description": "Subscription-based streaming service",
+      "website": "https://www.netflix.com",
+      "alternatives": ["Joyn", "Canal+"]
+    },
+    {
+      "name": "Spotify",
+      "origin": "SE",
+      "alternatives": [],
+      "website": "https://www.spotify.com"
+    }
+  ]
