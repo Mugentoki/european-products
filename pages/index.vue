@@ -4,9 +4,8 @@
         v-model="search"
         placeholder="Search for a product..."
         class="p-2 border rounded"
-      />
-      <button @click="fetchProducts" class="p-2 bg-blue-500 text-white rounded ml-2">Search</button>
-  
+        @input="fetchProducts"
+      >  
       <div v-if="loading" class="mt-4">Loading...</div>
   
       <ul v-else class="mt-4">
@@ -27,13 +26,36 @@
   const search = ref("");
   const products = ref([]);
   const loading = ref(false);
+
+  let abortController = null;
+  let fetchTimer = null;
   
   async function fetchProducts() {
-    loading.value = true;
-    const res = await fetch(`/api/products?q=${search.value}`);
-    const data = await res.json();
-    products.value = data.products;
-    loading.value = false;
+    clearTimeout(fetchTimer);
+    
+    if (abortController) {
+      abortController.abort();
+    }
+
+    fetchTimer = setTimeout(async () => {
+      abortController = new AbortController();
+      const signal = abortController.signal;
+
+      loading.value = true;
+      
+      try {
+        const res = await fetch(`/api/products?q=${search.value}`, { signal });
+        const data = await res.json();
+        products.value = data.products;
+      } catch (error) {
+        if (error.name === "AbortError") {
+      console.log("Fetch aborted");
+    } else {
+      console.error("Fetch error:", error);
+    }      }
+
+      loading.value = false;
+    }, 500);
   }
   </script>
   
