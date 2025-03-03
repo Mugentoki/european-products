@@ -5,6 +5,8 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -15,5 +17,11 @@
     "sqlite3": "^5.1.7",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.1.0",
+    "eslint": "^9.21.0",
+    "sass-embedded": "^1.85.1",
+    "typescript": "^5.8.2"
   }
 }

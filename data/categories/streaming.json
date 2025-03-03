@@ -8,6 +8,22 @@
       "alternatives": ["Joyn", "Canal+"]
     },
     {
+      "name": "Joyn",
+      "company": "Joyn GmbH",
+      "origin": "DE",
+      "description": "Subscription-based streaming service",
+      "website": "https://www.joyn.de",
+      "alternatives": ["Canal+"]
+    },
+    {
+      "name": "Canal+",
+      "company": "Groupe Canal+",
+      "origin": "FR",
+      "description": "Subscription-based streaming service",
+      "website": "https://www.canalplus.com",
+      "alternatives": ["Joyn"]
+    },
+    {
       "name": "Spotify",
       "company": "Spotify AB",
       "origin": "SE",

@@ -6,3 +6,15 @@
     </NuxtLayout>
   </div>
 </template>
+
+<script setup lang="ts"></script>
+
+<style lang="scss">
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+}
+</style>
