@@ -3,11 +3,19 @@ import path from "path";
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 
-const dbFile = path.resolve("./data.db");
 
-async function initializeDatabase() {
+export const dbPath = "./data.db";
+
+export async function getDatabase() {
+  return await open({
+    filename: path.resolve(dbPath),
+    driver: sqlite3.Database,
+  });
+}
+
+export async function initializeDatabase() {
   const db = await open({
-    filename: dbFile,
+    filename: path.resolve(dbPath),
     driver: sqlite3.Database,
   });
 
@@ -61,5 +69,3 @@ async function initializeDatabase() {
 
   return db;
 }
-
-export default initializeDatabase;

@@ -1,11 +1,12 @@
 import { defineEventHandler, getQuery } from "h3";
-import initializeDatabase from "../db";
+import { initializeDatabase, getDatabase } from "../db";
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
   const search = query.q as string;
 
-  const db = await initializeDatabase();
+  const db = await getDatabase();
+  // const db = await initializeDatabase();
 
   let products;
   if (search) {

@@ -9,8 +9,10 @@
     },
     {
       "name": "Spotify",
+      "company": "Spotify AB",
       "origin": "SE",
-      "alternatives": [],
-      "website": "https://www.spotify.com"
+      "description": "Music streaming service",
+      "website": "https://www.spotify.com",
+      "alternatives": []
     }
   ]
