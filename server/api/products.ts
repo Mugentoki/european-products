@@ -3,16 +3,7 @@ import { getDatabase } from "../db";
 
 import type { Database } from "sqlite";
 import type { QueryObject } from "ufo";
-
-export type Product = {
-  name: string;
-  company: string;
-  origin: string;
-  description: string;
-  category: string;
-  website: string;
-  alternatives: Product[] | string;
-};
+import type { Product } from "~/types";
 
 export default defineEventHandler(async (event) => {
   const query: QueryObject = getQuery(event);

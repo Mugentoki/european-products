@@ -3,18 +3,20 @@ import path from "path";
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 
+import type { Database } from "sqlite";	
+import type { Country, Product } from "~/types";
 
-export const dbPath = "./data.db";
+export const dbPath: string = "./data.db";
 
-export async function getDatabase() {
+export async function getDatabase(): Promise<Database> {
   return await open({
     filename: path.resolve(dbPath),
     driver: sqlite3.Database,
   });
 }
 
-export async function initializeDatabase() {
-  const db = await open({
+export async function initializeDatabase(): Promise<Database> {
+  const db: Database = await open({
     filename: path.resolve(dbPath),
     driver: sqlite3.Database,
   });
@@ -40,19 +42,19 @@ export async function initializeDatabase() {
   `);
 
   // Load JSON files
-  const categoriesDir = path.resolve("./data/categories");
-  const productFiles = fs.readdirSync(categoriesDir);
-  const countriesFile = path.resolve("./data/countries/countries.json");
-  const countries = JSON.parse(fs.readFileSync(countriesFile, "utf-8"));
+  const categoriesDir: string = path.resolve("./data/categories");
+  const productFiles: string[] = fs.readdirSync(categoriesDir);
+  const countriesFile: string = path.resolve("./data/countries/countries.json");
+  const countries: Country[] = JSON.parse(fs.readFileSync(countriesFile, "utf-8")) as Country[];
 
   for (const file of productFiles) {
-    const category = path.basename(file, ".json");
-    const filePath = path.join(categoriesDir, file);
-    const rawData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    const category: string = path.basename(file, ".json");
+    const filePath: string = path.join(categoriesDir, file);
+    const rawData: Product[] = JSON.parse(fs.readFileSync(filePath, "utf-8")) as Product[];
 
     for (const product of rawData) {
       const { name, company, origin, description, website, alternatives } = product;
-      const { lastID } = await db.run(
+      await db.run(
         "INSERT INTO products (name, company, origin, description, category, website, alternatives) VALUES (?, ?, ?, ?, ?, ?, ?)",
         [name, company, origin, description, category, website, JSON.stringify(alternatives)]
       );
@@ -61,7 +63,7 @@ export async function initializeDatabase() {
 
   for (const country of countries) {
     const { name, alpha2, memberships } = country;
-    const { lastID } = await db.run(
+    await db.run(
       "INSERT INTO countries (name, alpha2, memberships) VALUES (?, ?, ?)",
       [name, alpha2, JSON.stringify(memberships)]
     );
