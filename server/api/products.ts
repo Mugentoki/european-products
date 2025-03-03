@@ -1,5 +1,5 @@
 import { defineEventHandler, getQuery } from "h3";
-import { initializeDatabase, getDatabase } from "../db";
+import { getDatabase } from "../db";
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
