@@ -1,6 +1,6 @@
 <template>
     <PageContainer>
-      <h1></h1>
+      <h1>{{ $t('pages.index.headline') }}</h1>
       <input
           v-model="search"
           placeholder="Search for a product..."
