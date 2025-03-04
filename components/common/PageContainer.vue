@@ -11,5 +11,6 @@ defineProps<{ extraClasses?: string }>();
 <style lang="scss">
 .page-container {
   width: 100%;
+  padding: var(--spacing-medium);
 }
 </style>
