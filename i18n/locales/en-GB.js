@@ -9,7 +9,8 @@ export default {
             search: {
                 placeholder: "Search for a product",
                 label: "Search for a product"
-            }
+            },
+            productlink: "See alternatives"
         }
     }
 }

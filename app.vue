@@ -86,7 +86,7 @@ h6 {
   font-size: var(--font-size-h6);
 }
 
-h1,h2,h3,h4,h5,h6,strong {
+h1,h2,h3,h4,h5,h6,strong,a {
   color: var(--color-highlight);
 }
 </style>

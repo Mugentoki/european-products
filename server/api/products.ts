@@ -26,7 +26,7 @@ async function getSearchedProducts(db: Database, search: string): Promise<Produc
   let products = [];
   
   if (search) {
-    products = await db.all("SELECT name, company, origin, description, category, website, alternatives FROM products WHERE name LIKE ?", [`%${search}%`]);
+    products = await db.all("SELECT id, name, company, origin, description, category, website, alternatives FROM products WHERE name LIKE ?", [`%${search}%`]);
   }
 
   return products;
@@ -35,7 +35,7 @@ async function getSearchedProducts(db: Database, search: string): Promise<Produc
 async function getAlternatives(db: Database, alternatives: string): Promise<Product[]> {
   const alternativesArray: string[] = JSON.parse(alternatives) as string[];
   const alternativesObjects: Product[] = await db.all(
-    "SELECT name, company, origin, description, category, website, alternatives FROM products WHERE name IN (" + alternativesArray.map(() => "?").join(", ") + ")",
+    "SELECT id, name, company, origin, description, category, website, alternatives FROM products WHERE name IN (" + alternativesArray.map(() => "?").join(", ") + ")",
     alternativesArray
   );
   

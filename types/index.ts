@@ -5,6 +5,7 @@ export type Country = {
 };
 
 export type Product = {
+  id: number;
   name: string;
   company: string;
   origin: string;

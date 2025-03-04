@@ -9,7 +9,8 @@ export default {
             search: {
                 placeholder: "Nach Produkt suchen",
                 label: "Nach Produkt suchen"
-            }
+            },
+            productlink: "Alternativen anzeigen"
         }
     }
 }

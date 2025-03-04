@@ -21,6 +21,7 @@
           <strong class="search-results--item-name">{{ product.name }}</strong>
           <div class="search-results--item-labels"><span class="origin" :class="product.origin">{{ product.origin }}</span></div>
           <p class="search-results--item-description">{{ product.description }}</p>
+          <NuxtLink :to="'/product/' + product.id">{{ $t('pages.index.productlink') }}</NuxtLink>
         </li>
       </ul>
     </div>
@@ -108,6 +109,7 @@ async function fetchProducts() {
 
 .search-results {
   width: 100%;
+  margin-top: var(--spacing-large);
 
   &--list {
     display: flex;
@@ -116,9 +118,12 @@ async function fetchProducts() {
     gap: var(--spacing-medium);
     list-style: none;
     padding: 0;
+    margin: 0;
   }
 
   &--item {
+    display: flex;
+    flex-direction: column;
     width: 300px;
     padding: var(--spacing-medium);
     border-radius: 8px;
@@ -132,6 +137,10 @@ async function fetchProducts() {
 
     &-name {
       font-size: var(--font-size-large);
+    }
+
+    &-description {
+      flex-grow: 1;
     }
   }
 }
