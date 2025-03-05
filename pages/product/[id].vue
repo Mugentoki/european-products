@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import PageContainer from "~/components/common/PageContainer.vue";
+import PageContainer from "~/components/layout/PageContainer.vue";
 
 const route = useRoute()
 const id = ref(route.params.id)

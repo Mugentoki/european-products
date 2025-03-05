@@ -33,7 +33,7 @@ import { ref } from "vue";
 
 import type { Ref } from "vue";
 import type { Product } from "~/types";
-import PageContainer from "~/components/common/PageContainer.vue";
+import PageContainer from "~/components/layout/PageContainer.vue";
 
 const search: Ref<string> = ref("");
 const products: Ref<Product[]> = ref([]);

@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
+  modules: ['@nuxt/eslint', '@nuxtjs/i18n', '@nuxt/image'],
   app: {
     head: {
       link: [
@@ -23,5 +23,9 @@ export default defineNuxtConfig({
     detectBrowserLanguage: {
       fallbackLocale: 'en',
     }
+  },
+  image: {
+    quality: 90,
+    format: ['webp']
   }
 })
