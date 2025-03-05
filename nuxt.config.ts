@@ -22,7 +22,8 @@ export default defineNuxtConfig({
     lazy: true,
     detectBrowserLanguage: {
       fallbackLocale: 'en',
-    }
+    },
+
   },
   image: {
     quality: 90,

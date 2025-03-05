@@ -3,7 +3,9 @@ export default {
 
     },
     footer: {
-        disclaimer: "This website is an independent open-source project and is not affiliated with, endorsed by, or associated with any European institution or government body."
+        disclaimer: "This website is an independent open-source project and is not affiliated with, endorsed by, or associated with any European institution or government body.",
+        group1title: "About",
+        group2title: "Legals",
     },
     pages: {
         index: {
@@ -16,7 +18,14 @@ export default {
                 placeholder: "Search for a product",
                 label: "Search for a product"
             },
-            productlink: "See alternatives"
-        }
+            productlink: "See alternatives",
+        },
+    },
+    links: {
+        about: "About This Project",
+        faq: "Frequently Asked Questions",
+        contribute: "How to Contribute",
+        privacy: "Privacy Policy",
+        imprint: "Imprint",
     }
 }
