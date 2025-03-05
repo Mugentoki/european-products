@@ -21,6 +21,7 @@
           </div>
         </div>
       </div>
+      <div class="footer--spacer"></div>
       <div class="footer--copyright">
         <span>&copy; {{ year }} European Products</span>
       </div>
@@ -44,6 +45,7 @@ const year: number = new Date().getFullYear();
   background: var(--color-eu-blue);
   color: var(--color-font-light);
   padding: var(--spacing-small) var(--spacing-medium) var(--spacing-medium) var(--spacing-medium) ;
+  margin-top: var(--spacing-large);
 
   &--inner {
     max-width: var(--max-content-width);
@@ -52,13 +54,15 @@ const year: number = new Date().getFullYear();
 
   &--content {
     display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
     gap: var(--spacing-large);
 
     &-groups {
       display: flex;
       flex-grow: 1;
       gap: calc(var(--spacing-large) * 2);
-      justify-content: flex-end;
+      justify-content: space-between;
     }
 
     &-group {
@@ -83,6 +87,12 @@ const year: number = new Date().getFullYear();
     }
   }
 
+  &--spacer {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-eu-yellow);
+  }
+
   &--copyright,
   &--disclaimer{
     text-align: center;
@@ -100,6 +110,19 @@ const year: number = new Date().getFullYear();
   a {
     color: var(--color-font-light);
     text-decoration: none;
+  }
+}
+
+@media all and (min-width: $screen-tablet) {
+  .footer {
+    &--content {
+      flex-direction: row;
+      align-items: flex-start;
+
+      &-groups {
+        justify-content: flex-end;
+      }
+    }
   }
 }
 </style>
