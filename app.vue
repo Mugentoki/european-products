@@ -25,6 +25,8 @@ import Footer from "~/components/layout/Footer.vue";
   --spacing-medium: 20px;
   --spacing-large: 36px;
 
+  --max-content-width: 1200px;
+
   --color-eu-blue: #003399;
   --color-eu-yellow: #ffcc00;
   --color-zumthor: #eef5ff;

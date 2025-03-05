@@ -1,4 +1,10 @@
 export default {
+    header: {
+
+    },
+    footer: {
+        disclaimer: "Diese Website ist ein unabhängiges Open-Source-Projekt und steht in keiner Verbindung zu, wird nicht unterstützt von und ist nicht assoziiert mit einer europäischen Institution oder Regierungsbehörde."
+    },
     pages: {
         index: {
             headline: {
