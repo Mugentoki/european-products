@@ -15,8 +15,8 @@
           <div class="footer--content-group">
             <h2>{{ $t('footer.group2title') }}</h2>
             <ul>
-              <li><NuxtLinkLocale to="/privacy">{{ $t('links.privacy') }}</NuxtLinkLocale></li>
-              <li><NuxtLinkLocale to="/imprint">{{ $t('links.imprint') }}</NuxtLinkLocale></li>
+              <li><NuxtLinkLocale to="privacy">{{ $t('links.privacy') }}</NuxtLinkLocale></li>
+              <li><NuxtLinkLocale to="imprint">{{ $t('links.imprint') }}</NuxtLinkLocale></li>
             </ul>
           </div>
         </div>

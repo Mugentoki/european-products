@@ -11,14 +11,6 @@ export default defineEventHandler(async (event) => {
   const db: Database = await getDatabase();
   const products: Product[] = await getSearchedProducts(db, search);
 
-  if (!products.length) return { products };
-
-  for await (const product of products) {
-    if (typeof product.alternatives === "string") {
-      product.alternatives = await getAlternatives(db, product.alternatives);
-    }
-  }
-
   return { products };
 });
 
@@ -26,18 +18,37 @@ async function getSearchedProducts(db: Database, search: string): Promise<Produc
   let products = [];
   
   if (search) {
-    products = await db.all("SELECT id, name, company, origin, description, category, website, alternatives FROM products WHERE name LIKE ?", [`%${search}%`]);
+    products = await db.all(
+          `SELECT 
+      products.id, 
+      products.name, 
+      products.company, 
+      products.country, 
+      JSON_OBJECT(
+          'country_id', countries.id,
+          'country_name', countries.name,
+          'country_code', countries.alpha2,
+          'country_memberships', countries.memberships
+      ) AS country, 
+      products.description, 
+      products.category, 
+      products.website, 
+      products.alternatives
+  FROM 
+      products 
+  JOIN 
+      countries ON products.country = countries.alpha2 
+  WHERE 
+      products.name LIKE ?`,
+          [`%${search}%`]
+      );
   }
 
-  return products;
-}
+  products = products.map((product) => {
+    product.country = JSON.parse(product.country);
+    product.alternatives = JSON.parse(product.alternatives);
+    return product;
+  });
 
-async function getAlternatives(db: Database, alternatives: string): Promise<Product[]> {
-  const alternativesArray: string[] = JSON.parse(alternatives) as string[];
-  const alternativesObjects: Product[] = await db.all(
-    "SELECT id, name, company, origin, description, category, website, alternatives FROM products WHERE name IN (" + alternativesArray.map(() => "?").join(", ") + ")",
-    alternativesArray
-  );
-  
-  return alternativesObjects
+  return products;
 }

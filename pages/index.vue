@@ -13,13 +13,15 @@
           :aria-label="$t('pages.index.search.label')"
           @input="fetchProducts"
       >
-      <div v-if="loading" class="spinner" />
+      <div class="spinner-wrapper">
+        <div v-if="loading" class="spinner" />
+      </div>
     </div>
     <div class="search-results">
       <ul class="search-results--list">
-        <li v-for="product in products" :key="product.id" class="search-results--item">
+        <li v-for="product in products" :key="product.id" class="search-results--item" :class="{ european: hasEuMembership(product.country.country_memberships) }">
           <strong class="search-results--item-name">{{ product.name }}</strong>
-          <div class="search-results--item-labels"><span class="origin" :class="product.origin">{{ product.origin }}</span></div>
+          <div class="search-results--item-labels"><span class="country" :class="product.country.country_code">{{ product.country.country_name }}</span></div>
           <p class="search-results--item-description">{{ product.description }}</p>
           <NuxtLink :to="'/product/' + product.id">{{ $t('pages.index.productlink') }}</NuxtLink>
         </li>
@@ -59,6 +61,7 @@ async function fetchProducts() {
       const res: Response = await fetch(`/api/products?q=${search.value}`, { signal });
       const data = await res.json();
       products.value = data.products;
+      console.log("Fetched products:", products.value);
     } catch (error: unknown) {
       if (error instanceof Error) {
         if (error.name === "AbortError") {
@@ -71,6 +74,11 @@ async function fetchProducts() {
 
     loading.value = false;
   }, 500);
+}
+
+function hasEuMembership(memberships: string[]): boolean {
+  const euMemberships: string[] = ["EU", "EEA", "EFTA", "DCFTA"];
+  return euMemberships.some((membership) => memberships.includes(membership));
 }
 </script>
 
@@ -85,7 +93,8 @@ async function fetchProducts() {
   display: flex;
   justify-content: center;
   position: relative;
-  margin-top: 40px;
+  width: fit-content;
+  margin: 40px auto 0;
 
   input {
     width: 300px;
@@ -128,10 +137,17 @@ async function fetchProducts() {
     padding: var(--spacing-medium);
     border-radius: 8px;
     background-color: #ffffff;
-    box-shadow: 0 0 8px 0 var(--color-border);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 0 8px 0 transparent;
     transition: all .3s ease-in-out;
 
+    &.european {
+      border-color: var(--color-eu-blue);
+      box-shadow: 0 0 8px 0 var(--color-border-active);
+    }
+
     &:hover {
+      border-color: var(--color-eu-blue);
       box-shadow: 0 0 16px 0 var(--color-border-active);
     }
 
@@ -145,9 +161,15 @@ async function fetchProducts() {
   }
 }
 
+.spinner-wrapper {
+  position: absolute;
+  top: calc(50% - 10px);
+  right: calc(10px + var(--spacing-small));
+}
+
 .spinner {
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   position: relative;
   animation: spin 1s linear infinite;

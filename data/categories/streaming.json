@@ -2,7 +2,7 @@
     {
       "name": "Netflix",
       "company": "Netflix Inc.",
-      "origin": "US",
+      "country": "US",
       "description": "Subscription-based streaming service",
       "website": "https://www.netflix.com",
       "alternatives": ["Joyn", "Canal+"]
@@ -10,7 +10,7 @@
     {
       "name": "Joyn",
       "company": "Joyn GmbH",
-      "origin": "DE",
+      "country": "DE",
       "description": "Subscription-based streaming service",
       "website": "https://www.joyn.de",
       "alternatives": ["Canal+"]
@@ -18,7 +18,7 @@
     {
       "name": "Canal+",
       "company": "Groupe Canal+",
-      "origin": "FR",
+      "country": "FR",
       "description": "Subscription-based streaming service",
       "website": "https://www.canalplus.com",
       "alternatives": ["Joyn"]
@@ -26,7 +26,7 @@
     {
       "name": "Spotify",
       "company": "Spotify AB",
-      "origin": "SE",
+      "country": "SE",
       "description": "Music streaming service",
       "website": "https://www.spotify.com",
       "alternatives": []

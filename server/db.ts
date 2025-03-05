@@ -22,22 +22,22 @@ export async function initializeDatabase(): Promise<Database> {
   });
 
   await db.exec(`
-    CREATE TABLE IF NOT EXISTS products (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT,
-      company TEXT,
-      origin TEXT,
-      description TEXT,
-      category TEXT,
-      website TEXT,
-      alternatives TEXT
-    );
-
     CREATE TABLE IF NOT EXISTS countries (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT,
       alpha2 TEXT,
       memberships TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS products (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT,
+      company TEXT,
+      country TEXT,
+      description TEXT,
+      category TEXT,
+      website TEXT,
+      alternatives TEXT
     );
   `);
 
@@ -53,10 +53,10 @@ export async function initializeDatabase(): Promise<Database> {
     const rawData: Product[] = JSON.parse(fs.readFileSync(filePath, "utf-8")) as Product[];
 
     for (const product of rawData) {
-      const { name, company, origin, description, website, alternatives } = product;
+      const { name, company, country, description, website, alternatives } = product;
       await db.run(
-        "INSERT INTO products (name, company, origin, description, category, website, alternatives) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        [name, company, origin, description, category, website, JSON.stringify(alternatives)]
+        "INSERT INTO products (name, company, country, description, category, website, alternatives) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        [name, company, country, description, category, website, JSON.stringify(alternatives)]
       );
     }
   }

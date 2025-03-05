@@ -2,7 +2,7 @@
     {
       "name": "Flixbus",
       "company": "FlixMobility GmbH",
-      "origin": "DE",
+      "country": "DE",
       "description": "Bus service",
       "website": "https://www.flixbus.com",
       "alternatives": []
