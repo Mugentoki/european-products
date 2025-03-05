@@ -12,5 +12,6 @@ defineProps<{ extraClasses?: string }>();
 .page-container {
   width: 100%;
   padding: var(--spacing-medium);
+  flex-grow: 1;
 }
 </style>

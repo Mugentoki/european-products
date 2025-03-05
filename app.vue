@@ -2,11 +2,13 @@
   <NuxtLayout>
     <Header/>
     <NuxtPage/>
+    <Footer/>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
 import Header from "~/components/layout/Header.vue";
+import Footer from "~/components/layout/Footer.vue";
 </script>
 
 <style lang="scss">
@@ -25,11 +27,13 @@ import Header from "~/components/layout/Header.vue";
 
   --color-eu-blue: #003399;
   --color-eu-yellow: #ffcc00;
+  --color-zumthor: #eef5ff;
 
-  --color-background: #e7fdff;
+  --color-background: var(--color-zumthor);
   --color-border: #20263c;
   --color-border-active: var(--color-eu-blue);
   --color-font: #20263c;
+  --color-font-light: var(--color-zumthor);
   --color-highlight: var(--color-eu-blue);
 
   --font-size-small: 1.4rem;
@@ -45,10 +49,9 @@ import Header from "~/components/layout/Header.vue";
   --font-family-base: 'Albert Sans', sans-serif;
 }
 
-html, body, #__nuxt {
-  width: 100vw;
+html, body {
+  width: 100%;
   height: 100dvh;
-  overflow: hidden;
   margin: 0;
   padding: 0;
 }
@@ -91,5 +94,11 @@ h6 {
 
 h1,h2,h3,h4,h5,h6,strong,a {
   color: var(--color-highlight);
+}
+
+#__nuxt {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
 }
 </style>
